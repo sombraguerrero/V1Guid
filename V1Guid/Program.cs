@@ -17,6 +17,23 @@ if (args.Length == 1 && int.TryParse(args[0], out num))
             Console.WriteLine("Creation of this GUID failed!");
     }
 }
+else if (args.Length == 0)
+{
+    Console.Write("Number of Guids: ");
+    if (int.TryParse(Console.ReadLine(), out num))
+    {
+        for (int i = 0; i < num; i++)
+        {
+            if (UuidCreateSequential(out g) == RPC_S_OK)
+            {
+                Console.WriteLine(g.ToString().ToUpper());
+            }
+            else
+                Console.WriteLine("Creation of this GUID failed!");
+        }
+    }
+}
+
 else if (UuidCreateSequential(out g) == RPC_S_OK)
 {
     Console.WriteLine(g.ToString().ToUpper());
