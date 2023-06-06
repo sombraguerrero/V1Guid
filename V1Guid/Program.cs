@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 [DllImport("rpcrt4.dll", SetLastError = true)] //DLL still present as of Windows 11 - both architectures
-static extern int UuidCreateSequential(out Guid guid);
+static extern int UuidCreateSequential(out Guid guid); //Function names are case-sensitive per the output of dumpbin /exports 
 
 const int RPC_S_OK = 0;
 int num;
