@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text;
 
 [DllImport("rpcrt4.dll", SetLastError = true)] //DLL still present as of Windows 11 - both architectures
