@@ -19,7 +19,7 @@ if (args.Length == 1 && int.TryParse(args[0], out num))
             Console.WriteLine("Creation of this GUID failed!");
     }
 }
-else if (args.Length == 0)
+else if (args.Length == 1 && args[0].ToLower().Equals("--stdin"))
 {
     Console.Write("Number of Guids: ");
     if (int.TryParse(Console.ReadLine(), out num))
