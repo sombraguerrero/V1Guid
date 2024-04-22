@@ -4,6 +4,7 @@ using System.Collections;
 using Microsoft.SqlServer.Server;
 using System.Data.SqlTypes;
 using System;
+using System.Data.SqlClient;
 
 namespace OrderedUUID
 {
@@ -39,6 +40,14 @@ namespace OrderedUUID
                 arrayList.Add(myGuid);
             }
             return arrayList;
+        }
+
+        [SqlFunction(DataAccess = DataAccessKind.Read)]
+        public static byte[] ReturnOrderedGuid()
+        {
+            byte[] buffer;
+            CreateV1Guid(out buffer);
+            return buffer;
         }
 
         public static void FillRow(object obj, out SqlBinary binary)

@@ -7,15 +7,18 @@ CREATE LOGIN <username> FROM ASYMMETRIC KEY <keyname> ;
 GRANT UNSAFE ASSEMBLY TO <username> ;  
 GO
 
-CREATE ASSEMBLY <assembly name> from '<path to dll>' WITH PERMISSION_SET = UNSAFE
+CREATE ASSEMBLY UUID from '<path to dll>' WITH PERMISSION_SET = UNSAFE
 GO
 
-DROP FUNCTION IF EXISTS <schema>.<function name>;
+DROP FUNCTION IF EXISTS dbo.orderedUUIDTVF();
 GO
 
-CREATE FUNCTION <schema>.functionName(<params>)  
+CREATE FUNCTION dbo.orderedUUIDTVF(@num int = 1)  
 RETURNS TABLE   
-(<field> <datatype>)
+(ordered_uuid varbinary(32))
 as
-EXTERNAL NAME <assembly name>.[<namespace>.<classname>].InitMethod -- name of entrypoint function
+EXTERNAL NAME UUID.[OrderedUUID.Class1].InitMethod -- name of entrypoint function
 GO
+
+CREATE FUNCTION ordered_uuid() RETURNS VARBINARY(32)   
+AS EXTERNAL NAME UUID.[OrderedUUID.Class1].ReturnOrderedGuid
